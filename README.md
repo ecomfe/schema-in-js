@@ -11,6 +11,8 @@
 
 Write json schema fast in js.
 
+## In Developing!
+
 ## Getting Started
 
 Install it via npm:
@@ -22,7 +24,13 @@ npm install schema-in-js
 And include in your project:
 
 ```javascript
-import schema-in-js from 'schema-in-js';
+import {default as Schema, String} from 'schema-in-js';
+
+let schema = {
+    name: String.length(10, 5)
+};
+
+let jsonSchema = Schema.toJSONSchema(schema);
 ```
 
 ## License
