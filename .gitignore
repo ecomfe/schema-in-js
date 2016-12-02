@@ -25,6 +25,9 @@ build/Release
 # Dependency directory
 node_modules
 
+# ESDOC
+out/esdoc
+
 # Babel compiled sources
 lib
 
