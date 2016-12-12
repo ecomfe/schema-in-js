@@ -5,6 +5,7 @@
     "author": "yanghuabei",
     "repository": "yanghuabei/schema-in-js",
     "license": "MIT",
+    "version": "0.1.0-alpha.1",
     "scripts": {
         "compile": "babel src --out-dir lib",
         "coveralls": "cat ./coverage/lcov.info | coveralls",
