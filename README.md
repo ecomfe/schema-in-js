@@ -11,7 +11,7 @@
 
 Write json schema fast in js.
 
-## In Developing!
+## In Developing! Every version has breaking change!
 
 ## Getting Started
 
