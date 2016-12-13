@@ -29,7 +29,6 @@
         "semantic-release": "^6.3.2",
         "sinon": "*"
     },
-    "version": "0.0.0-development",
     "config": {
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
