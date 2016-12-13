@@ -7,6 +7,7 @@
     "license": "MIT",
     "version": "0.1.0-alpha.1",
     "scripts": {
+        "eslint": "./node_modules/.bin/eslint src",
         "compile": "babel src --out-dir lib",
         "coveralls": "cat ./coverage/lcov.info | coveralls",
         "prepublish": "npm run compile",
@@ -23,6 +24,7 @@
         "chai": "*",
         "coveralls": "*",
         "cz-conventional-changelog": "^1.2.0",
+        "eslint": "^3.12.1",
         "flow-bin": "^0.36.0",
         "isparta": "*",
         "mocha": "*",
