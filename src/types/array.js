@@ -14,8 +14,6 @@ import {
     MIN_ITEMS,
     ADDITIONAL_ITEMS,
     UNIQUE_ITEMS,
-    TITLE,
-    DESCRIPTION
 } from '../const';
 
 /**
@@ -138,9 +136,7 @@ export class Arr extends Schema {
      */
     toJSONSchema() {
         let schema = {
-            type: this.type,
-            title: this[TITLE],
-            description: this[DESCRIPTION],
+            ...super.toJSONSchema(),
             maxItems: this[MAX_ITEMS],
             minItems: this[MIN_ITEMS],
             uniqueItems: this[UNIQUE_ITEMS]

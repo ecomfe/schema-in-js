@@ -7,10 +7,10 @@
 
 import {assert} from 'chai';
 import {Schema} from '../../../src/types/schema';
-import {REQUIRED, TITLE, DESCRIPTION} from '../../../src/const';
+import {ID, REQUIRED, TITLE, DESCRIPTION} from '../../../src/const';
 
-describe('type.string', function () {
-    it('Str should be a function', function () {
+describe('types.schema', function () {
+    it('Schema should be a function', function () {
         assert.typeOf(Schema, 'function');
     });
 
@@ -34,6 +34,7 @@ describe('type.string', function () {
 
     it('Method should work well', function () {
         let cases = [
+            ['id', 'id', ID],
             ['title', 'title', TITLE],
             ['description', 'description', DESCRIPTION],
             ['mayBe', false, REQUIRED],
@@ -46,11 +47,14 @@ describe('type.string', function () {
         });
     });
 
-    describe('Str.toJSONSchema', function () {
+    describe('Schema.toJSONSchema', function () {
         it('toJSONSchema method should return expected json schema', function () {
             schema.title('title').desc('desc').mayBe();
             schema = schema.toJSONSchema();
-            assert.deepEqual(schema, {});
+            assert.deepEqual(schema, {
+                title: 'title',
+                description: 'desc'
+            });
         });
     });
 });

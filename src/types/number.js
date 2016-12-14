@@ -12,9 +12,7 @@ import {
     MAXIMUM,
     EXCLUSIVE_MINIMUM,
     EXCLUSIVE_MAXIMUM,
-    MULTILE_OF,
-    TITLE,
-    DESCRIPTION
+    MULTILE_OF
 } from '../const';
 
 /**
@@ -128,18 +126,12 @@ export class Num extends Schema {
         return this;
     }
 
-    
-
     /**
-     * Transform to json schema.
-     *
      * @override
      */
     toJSONSchema() {
         let schema = {
-            type: this.type,
-            title: this[TITLE],
-            description: this[DESCRIPTION],
+            ...super.toJSONSchema(),
             maximum: this[MAXIMUM],
             minimum: this[MINIMUM],
             exclusiveMaximum: this[EXCLUSIVE_MAXIMUM],
