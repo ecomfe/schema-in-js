@@ -6,14 +6,14 @@
  */
 
 import _ from 'lodash';
-import {purify, assignIfNotEmptyOrNull, isSchema} from '../util';
+import {Schema} from './schema';
+import {purify, assignIfNotEmptyOrNull} from '../util';
 import {
     ITEMS,
     MAX_ITEMS,
     MIN_ITEMS,
     ADDITIONAL_ITEMS,
     UNIQUE_ITEMS,
-    REQUIRED,
     TITLE,
     DESCRIPTION
 } from '../const';
@@ -22,21 +22,12 @@ import {
  * Array schema class.
  *
  * @class Arr
+ * @extends Schema
  */
-export class Arr {
+export class Arr extends Schema {
 
     /**
-     * @constructor
-     */
-    constructor() {
-        this[REQUIRED] = true;
-    }
-
-    /**
-     * Type
-     *
-     * @readonly
-     * @type {string}
+     * @override
      */
     get type() {
         return 'array';
@@ -143,67 +134,7 @@ export class Arr {
     }
 
     /**
-     * Set required.
-     *
-     * @public
-     * @param {boolean} required Whether required.
-     * @return {Arr}
-     */
-    required(required = true) {
-        this[REQUIRED] = required;
-        return this;
-    }
-
-    /**
-     * Set to not required.
-     *
-     * @public
-     * @return {Arr}
-     */
-    mayBe() {
-        return this.required(false);
-    }
-
-    /**
-     * Set title.
-     *
-     * @public
-     * @param {string} title Property title.
-     * @return {Arr}
-     */
-    title(title) {
-        this[TITLE] = title;
-        return this;
-    }
-
-    /**
-     * Set description.
-     *
-     * @public
-     * @param {string} description Description of property.
-     * @return {Arr}
-     */
-    description(description) {
-        this[DESCRIPTION] = description;
-        return this;
-    }
-
-    /**
-     * Alias for description setter.
-     *
-     * @public
-     * @param {string} description Description of property.
-     * @return {Arr}
-     */
-    desc(description) {
-        return this.description(description);
-    }
-
-    /**
-     * Transform to json schema.
-     *
-     * @public
-     * @return {Object}
+     * @override
      */
     toJSONSchema() {
         let schema = {
@@ -226,7 +157,7 @@ export class Arr {
     /**
      * Build schema-in-js items to json schema.
      *
-     * @public
+     * @private
      * @param {Schema | Array<Schema>} items Schema-in-js items definition.
      * @return {Object | Array<Object>}
      */
@@ -235,7 +166,7 @@ export class Arr {
             return items.map(item => item.toJSONSchema());
         }
 
-        if (isSchema(items)) {
+        if (items instanceof Schema) {
             return items.toJSONSchema();
         }
     }
@@ -243,12 +174,12 @@ export class Arr {
     /**
      * Build schema-in-js additionalItems to json schema.
      *
-     * @public
+     * @private
      * @param {Schema | Boolean} additionalItems Schema-in-js additionalItems definition.
      * @return {Object | Boolean}
      */
     buildAdditionalItems(additionalItems) {
-        if (isSchema(additionalItems)) {
+        if (additionalItems instanceof Schema) {
             return additionalItems.toJSONSchema();
         }
 

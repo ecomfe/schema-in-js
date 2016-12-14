@@ -5,95 +5,31 @@
  * @author hiby(yanghuabei@outlook.com)
  */
 
+import {Schema} from './schema';
 import {purify} from '../util';
-import {REQUIRED, TITLE, DESCRIPTION} from '../const';
+import {TITLE, DESCRIPTION} from '../const';
 
 /**
  * boolean schema class.
  *
  * @class Bool
+ * @extends Schema
  */
-export class Bool {
-
-    /**
-     * @constructor
-     */
-    constructor() {
-        this[REQUIRED] = true;
-    }
+export class Bool extends Schema {
 
     /**
      * type
      *
-     * @readonly
-     * @type {string}
+     * @override
      */
     get type() {
         return 'boolean';
     }
 
     /**
-     * Set required.
-     *
-     * @public
-     * @param {boolean} [required=true] Whether required.
-     * @return {Bool}
-     */
-    required(required = true) {
-        this[REQUIRED] = required;
-        return this;
-    }
-
-    /**
-     * Set to not required.
-     *
-     * @public
-     * @return {Bool}
-     */
-    mayBe() {
-        return this.required(false);
-    }
-
-    /**
-     * Set title.
-     *
-     * @public
-     * @param {string} title Property title.
-     * @return {Bool}
-     */
-    title(title) {
-        this[TITLE] = title;
-        return this;
-    }
-
-    /**
-     * Set description.
-     *
-     * @public
-     * @param {string} description Description of property.
-     * @return {Bool}
-     */
-    description(description) {
-        this[DESCRIPTION] = description;
-        return this;
-    }
-
-    /**
-     * Alias for description setter.
-     *
-     * @public
-     * @param {string} description Description of property.
-     * @return {Bool}
-     */
-    desc(description) {
-        return this.description(description);
-    }
-
-    /**
      * Transform to json schema.
      *
-     * @public
-     * @return {Object}
+     * @override
      */
     toJSONSchema() {
         let schema = {

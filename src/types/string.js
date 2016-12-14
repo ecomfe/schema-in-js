@@ -5,28 +5,24 @@
  * @author hiby(yanghuabei@outlook.com)
  */
 
+import {Schema} from './schema';
 import {purify} from '../util';
-import {PATTERN, MAX_LENGTH, MIN_LENGTH, REQUIRED, TITLE, DESCRIPTION} from '../const';
+import {PATTERN, MAX_LENGTH, MIN_LENGTH, TITLE, DESCRIPTION} from '../const';
 
 /**
  * String schema class.
  *
  * @class Str
+ * @extends Schema
  */
-export class Str {
-
-    /**
-     * @constructor
-     */
-    constructor() {
-        this[REQUIRED] = true;
-    }
+export class Str extends Schema {
 
     /**
      * Type
      *
      * @readonly
      * @type {string}
+     * @override
      */
     get type() {
         return 'string';
@@ -87,67 +83,9 @@ export class Str {
     }
 
     /**
-     * Set required.
-     *
-     * @public
-     * @param {boolean} required Whether required.
-     * @return {Str}
-     */
-    required(required = true) {
-        this[REQUIRED] = required;
-        return this;
-    }
-
-    /**
-     * Set to not required.
-     *
-     * @public
-     * @return {Str}
-     */
-    mayBe() {
-        return this.required(false);
-    }
-
-    /**
-     * Set title.
-     *
-     * @public
-     * @param {string} title Property title.
-     * @return {Str}
-     */
-    title(title) {
-        this[TITLE] = title;
-        return this;
-    }
-
-    /**
-     * Set description.
-     *
-     * @public
-     * @param {string} description Description of property.
-     * @return {Str}
-     */
-    description(description) {
-        this[DESCRIPTION] = description;
-        return this;
-    }
-
-    /**
-     * Alias for description setter.
-     *
-     * @public
-     * @param {string} description Description of property.
-     * @return {Str}
-     */
-    desc(description) {
-        return this.description(description);
-    }
-
-    /**
      * Transform to json schema.
      *
-     * @public
-     * @return {Object}
+     * @override
      */
     toJSONSchema() {
         let schema = {

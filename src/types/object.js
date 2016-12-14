@@ -6,6 +6,7 @@
  */
 
 import _ from 'lodash';
+import {Schema} from './schema';
 import {purify, assignIfNotEmptyOrNull} from '../util';
 import {
     ADDITIONAL_PROPERTIES,
@@ -23,23 +24,12 @@ import {
  * object schema class
  *
  * @class Obj
+ * @extends Schema
  */
-export class Obj {
+export class Obj extends Schema {
 
     /**
-     * Contructor
-     *
-     * @constructor
-     */
-    constructor() {
-        this[REQUIRED] = true;
-    }
-
-    /**
-     * type
-     *
-     * @readonly
-     * @type {string}
+     * @override
      */
     get type() {
         return 'object';
@@ -182,67 +172,7 @@ export class Obj {
     }
 
     /**
-     * Set required, **not the required array of object schema**
-     *
-     * @public
-     * @param {boolean} [required=true] Required
-     * @return {Obj}
-     */
-    required(required = true) {
-        this[REQUIRED] = required;
-        return this;
-    }
-
-    /**
-     * 设置为非必需
-     *
-     * @public
-     * @return {Obj}
-     */
-    mayBe() {
-        return this.required(false);
-    }
-
-    /**
-     * Set title.
-     *
-     * @public
-     * @param {string} title Property title.
-     * @return {Obj}
-     */
-    title(title) {
-        this[TITLE] = title;
-        return this;
-    }
-
-    /**
-     * Set description.
-     *
-     * @public
-     * @param {string} description Description of property.
-     * @return {Obj}
-     */
-    description(description) {
-        this[DESCRIPTION] = description;
-        return this;
-    }
-
-    /**
-     * alias for description
-     *
-     * @public
-     * @param {string} description Description of property.
-     * @return {Obj}
-     */
-    desc(description) {
-        return this.description(description);
-    }
-
-    /**
-     * Transform to json schema.
-     *
-     * @public
-     * @return {Object}
+     * @override
      */
     toJSONSchema() {
         let schema = {

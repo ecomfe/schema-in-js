@@ -5,14 +5,14 @@
  * @author hiby(yanghuabei@outlook.com)
  */
 import _ from 'lodash';
-import {purify, assignIfNotEmptyOrNull} from '../util';
+import {Schema} from './schema';
+import {purify} from '../util';
 import {
     MINIMUM,
     MAXIMUM,
     EXCLUSIVE_MINIMUM,
     EXCLUSIVE_MAXIMUM,
     MULTILE_OF,
-    REQUIRED,
     TITLE,
     DESCRIPTION
 } from '../const';
@@ -21,21 +21,14 @@ import {
  * Number schema class.
  *
  * @class Num
+ * @extends Schema
  */
-export class Num {
-
-    /**
-     * @constructor
-     */
-    constructor() {
-        this[REQUIRED] = true;
-    }
+export class Num extends Schema {
 
     /**
      * Type
      *
-     * @readonly
-     * @type {string}
+     * @override
      */
     get type() {
         return 'number';
@@ -135,68 +128,12 @@ export class Num {
         return this;
     }
 
-    /**
-     * Set required.
-     *
-     * @public
-     * @param {boolean} required Whether required.
-     * @return {Num}
-     */
-    required(required = true) {
-        this[REQUIRED] = required;
-        return this;
-    }
-
-    /**
-     * Set to not required.
-     *
-     * @public
-     * @return {Num}
-     */
-    mayBe() {
-        return this.required(false);
-    }
-
-    /**
-     * Set title.
-     *
-     * @public
-     * @param {string} title Property title.
-     * @return {Num}
-     */
-    title(title) {
-        this[TITLE] = title;
-        return this;
-    }
-
-    /**
-     * Set description.
-     *
-     * @public
-     * @param {string} description Description of property.
-     * @return {Num}
-     */
-    description(description) {
-        this[DESCRIPTION] = description;
-        return this;
-    }
-
-    /**
-     * Alias for description setter.
-     *
-     * @public
-     * @param {string} description Description of property.
-     * @return {Num}
-     */
-    desc(description) {
-        return this.description(description);
-    }
+    
 
     /**
      * Transform to json schema.
      *
-     * @public
-     * @return {Object}
+     * @override
      */
     toJSONSchema() {
         let schema = {
