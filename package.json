@@ -12,8 +12,7 @@
         "coveralls": "cat ./coverage/lcov.info | coveralls",
         "prepublish": "npm run compile",
         "test": "babel-node ./node_modules/.bin/isparta cover _mocha",
-        "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-        "flow": "flow; test $? -eq 0 -o $? -eq 2"
+        "semantic-release": "semantic-release pre && npm publish && semantic-release post"
     },
     "devDependencies": {
         "babel-cli": "*",
@@ -25,7 +24,6 @@
         "coveralls": "*",
         "cz-conventional-changelog": "^1.2.0",
         "eslint": "^3.12.1",
-        "flow-bin": "^0.36.0",
         "isparta": "*",
         "mocha": "*",
         "semantic-release": "^6.3.2",
