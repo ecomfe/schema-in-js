@@ -11,13 +11,11 @@ import {purify, assignIfNotEmptyOrNull} from '../util';
 import {
     ADDITIONAL_PROPERTIES,
     DEPENDENCIES,
-    DESCRIPTION,
     MAX_PROPERTIES,
     MIN_PROPERTIES,
     PATTERN_PROPERTIES,
     PROPERTIES,
     REQUIRED,
-    TITLE
 } from '../const';
 
 /**
@@ -176,9 +174,7 @@ export class Obj extends Schema {
      */
     toJSONSchema() {
         let schema = {
-            type: this.type,
-            title: this[TITLE],
-            description: this[DESCRIPTION],
+            ...super.toJSONSchema(),
             maxProperties: this[MAX_PROPERTIES],
             minProperties: this[MIN_PROPERTIES],
             patternProperties: this[PATTERN_PROPERTIES]

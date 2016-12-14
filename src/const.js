@@ -1,4 +1,5 @@
 export const REQUIRED = Symbol('required');
+export const ID = Symbol('id');
 export const TITLE = Symbol('title');
 export const DESCRIPTION = Symbol('description');
 

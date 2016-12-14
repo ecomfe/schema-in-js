@@ -6,8 +6,6 @@
  */
 
 import {Schema} from './schema';
-import {purify} from '../util';
-import {TITLE, DESCRIPTION} from '../const';
 
 /**
  * boolean schema class.
@@ -24,19 +22,5 @@ export class Bool extends Schema {
      */
     get type() {
         return 'boolean';
-    }
-
-    /**
-     * Transform to json schema.
-     *
-     * @override
-     */
-    toJSONSchema() {
-        let schema = {
-            type: this.type,
-            title: this[TITLE],
-            description: this[DESCRIPTION]
-        };
-        return purify(schema);
     }
 }

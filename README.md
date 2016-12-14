@@ -20,14 +20,16 @@ Install it via npm:
 ```shell
 npm install schema-in-js
 ```
+## Usage
+
 
 And include in your project:
 
 ```javascript
-import {default as Schema, String} from 'schema-in-js';
+import ts from 'schema-in-js';
 
 let schema = {
-    name: String.length(10, 5)
+    name: ts.str.length(10, 5)
 };
 
 let jsonSchema = Schema.toJSONSchema(schema);

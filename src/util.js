@@ -31,7 +31,7 @@ export function purify(object, defaults = {}, deep) {
     );
 
     return purifiedObject;
-};
+}
 
 /**
  * Assign value only if the value is not null or empty.

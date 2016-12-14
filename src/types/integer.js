@@ -19,14 +19,4 @@ export class Int extends Num {
     get type() {
         return 'integer';
     }
-
-    /**
-     * @override
-     */
-    toJSONSchema() {
-        let schema = super.toJSONSchema();
-        schema.type = this.type;
-
-        return schema;
-    }
 }

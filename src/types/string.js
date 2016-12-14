@@ -7,7 +7,7 @@
 
 import {Schema} from './schema';
 import {purify} from '../util';
-import {PATTERN, MAX_LENGTH, MIN_LENGTH, TITLE, DESCRIPTION} from '../const';
+import {PATTERN, MAX_LENGTH, MIN_LENGTH} from '../const';
 
 /**
  * String schema class.
@@ -89,9 +89,7 @@ export class Str extends Schema {
      */
     toJSONSchema() {
         let schema = {
-            type: this.type,
-            title: this[TITLE],
-            description: this[DESCRIPTION],
+            ...super.toJSONSchema(),
             minLength: this[MIN_LENGTH],
             maxLength: this[MAX_LENGTH],
             pattern: this[PATTERN]

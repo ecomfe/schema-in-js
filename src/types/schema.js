@@ -5,7 +5,8 @@
  * @author hiby(yanghuabei@outlook.com)
  */
 
-import {REQUIRED, TITLE, DESCRIPTION} from '../const';
+import {ID, REQUIRED, TITLE, DESCRIPTION} from '../const';
+import {purify} from '../util';
 
 /**
  * Base schema class.
@@ -54,6 +55,17 @@ export class Schema {
     }
 
     /**
+     * Set id.
+     *
+     * @public
+     * @return {Schema}
+     */
+    id(id) {
+        this[ID] = id;
+        return this;
+    }
+
+    /**
      * Set title.
      *
      * @public
@@ -95,6 +107,13 @@ export class Schema {
      * @return {Object}
      */
     toJSONSchema() {
-        return {};
+        let schema = {
+            type: this.type,
+            id: this[ID],
+            title: this[TITLE],
+            description: this[DESCRIPTION]
+        };
+
+        return purify(schema);
     }
 }
