@@ -52,7 +52,3 @@ export function assignIfNotEmptyOrNull(obj, key, value) {
     }
     return obj;
 }
-
-export function isSchema(obj) {
-    return _.isObject(obj);
-}
