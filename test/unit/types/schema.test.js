@@ -7,7 +7,7 @@
 
 import {assert} from 'chai';
 import {Schema} from '../../../src/types/schema';
-import {ID, REQUIRED, TITLE, DESCRIPTION} from '../../../src/const';
+import {ID, REQUIRED, TITLE, DESCRIPTION, DEFAULT, ENUM} from '../../../src/const';
 
 describe('types.schema', function () {
     it('Schema should be a function', function () {
@@ -16,8 +16,8 @@ describe('types.schema', function () {
 
     let schema = new Schema();
 
-    it('Property type should be ""', function () {
-        assert.equal(schema.type, '');
+    it('Property type should be "null"', function () {
+        assert.equal(schema.type, 'null');
     });
 
     it('Default required should be true', function () {
@@ -33,10 +33,13 @@ describe('types.schema', function () {
     });
 
     it('Method should work well', function () {
+        let values = [];
         let cases = [
             ['id', 'id', ID],
             ['title', 'title', TITLE],
             ['description', 'description', DESCRIPTION],
+            ['enum', values, ENUM],
+            ['default', null, DEFAULT],
             ['mayBe', false, REQUIRED],
             ['required', false, REQUIRED]
         ];
@@ -52,6 +55,7 @@ describe('types.schema', function () {
             schema.title('title').desc('desc').mayBe();
             schema = schema.toJSONSchema();
             assert.deepEqual(schema, {
+                type: 'null',
                 title: 'title',
                 description: 'desc'
             });

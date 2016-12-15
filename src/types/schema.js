@@ -5,7 +5,7 @@
  * @author hiby(yanghuabei@outlook.com)
  */
 
-import {ID, REQUIRED, TITLE, DESCRIPTION} from '../const';
+import {ID, REQUIRED, TITLE, DESCRIPTION, ENUM, DEFAULT} from '../const';
 import {purify} from '../util';
 
 /**
@@ -14,7 +14,7 @@ import {purify} from '../util';
  * @class Str
  */
 export class Schema {
-    
+
     /**
      * @constructor
      */
@@ -29,7 +29,7 @@ export class Schema {
      * @type {string}
      */
     get type() {
-        return '';
+        return 'null';
     }
 
     /**
@@ -101,6 +101,30 @@ export class Schema {
     }
 
     /**
+     * Set enum.
+     *
+     * @public
+     * @param {Array<Any>} values Avaialable values.
+     * @return {Schema}
+     */
+    enum(values) {
+        this[ENUM] = values;
+        return this;
+    }
+
+    /**
+     * Set default.
+     *
+     * @public
+     * @param {Any} defaultValue Default value.
+     * @return {Schema}
+     */
+    default(defaultValue) {
+        this[DEFAULT] = defaultValue;
+        return this;
+    }
+
+    /**
      * Transform to json schema.
      *
      * @public
@@ -111,7 +135,9 @@ export class Schema {
             type: this.type,
             id: this[ID],
             title: this[TITLE],
-            description: this[DESCRIPTION]
+            description: this[DESCRIPTION],
+            default: this[DEFAULT],
+            enum: this[ENUM]
         };
 
         return purify(schema);
