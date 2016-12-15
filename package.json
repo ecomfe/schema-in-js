@@ -19,7 +19,7 @@
         }
     ],
     "license": "MIT",
-    "version": "0.1.0-development",
+    "version": "0.1.1",
     "scripts": {
         "eslint": "eslint src",
         "compile": "babel src --out-dir lib",
