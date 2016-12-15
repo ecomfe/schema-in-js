@@ -46,6 +46,7 @@ describe('type.object', function () {
 
     it('Method should work well', function () {
         let cases = [
+            ['additionalProperties', false, ADDITIONAL_PROPERTIES],
             ['minProperties', 3, MIN_PROPERTIES],
             ['maxProperties', 5, MAX_PROPERTIES],
             ['properties', {}, PROPERTIES],
