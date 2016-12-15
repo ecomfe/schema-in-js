@@ -2,8 +2,22 @@
     "name": "schema-in-js",
     "description": "Write json schema fast in js.",
     "main": "lib/index.js",
-    "author": "yanghuabei",
-    "repository": "yanghuabei/schema-in-js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yanghuabei/schema-in-js.git"
+    },
+    "author": {
+        "name": "yanghuabei",
+        "email": "yanghuabei@outlook.com",
+        "url": "https://github.com/yanghuabei"
+    },
+    "contributors": [
+        {
+            "name": "yanghuabei",
+            "email": "yanghuabei@outlook.com",
+            "url": "https://github.com/yanghuabei"
+        }
+    ],
     "license": "MIT",
     "version": "0.1.0-development",
     "scripts": {
