@@ -11,44 +11,114 @@
 
 Write json schema fast in js.
 
-## In Developing! Every version has breaking change!
+## In Developing! Every version may have breaking change!
 
-## Getting Started
+## Why?
++ JSON is tedious and error prone.
++ JSON schema is tedious and error prone.
 
-Install it via npm:
+## Install
 
 ```shell
 npm install schema-in-js
 ```
+
 ## Usage
 
+Suppose we want to write json schema for a entity called user which has username, password, age, gender, province and city. City can be provided only if province exsits.
 
-And include in your project:
+If wrote in json schema, the result is:
 
-```javascript
-import sj from 'schema-in-js';
-
-let schema = {
-    name: sj.str.length(10, 5)
-};
-
-let jsonSchema = sj.transformToJSONSchema(schema);
-console.log(jsonSchema);
-
-// output
+```json
 {
-    type: 'object',
-    properties: {
-        name: {
-            type: 'string',
-            maxLength: 10,
-            minLength: 5
+    "type": "object",
+    "description": "User",
+    "properties": {
+        "username": {
+            "type": "string",
+            "maxLength": 20,
+            "minLength": 4
+        },
+        "password": {
+            "type": "string",
+            "pattern": "^(?:\\d+|[a-zA-Z]+|[!@#$%^&*]+)$"
+        },
+        "age": {
+            "type": "integer",
+            "max": 100,
+            "min": 16
+        },
+        "gender": {
+            "enum": ["male", "female"]
+        },
+        "province": {
+            "type": "string",
+            "maxLength": 10
+        },
+        "city": {
+            "type": "string",
+            "maxLength": 10
         }
     },
-    required: ['name']
+    "required": ["username", "password"],
+    "dependencies": {
+        "city": ["province"]
+    }
 }
 ```
 
-## License
+With schema in js, the result is:
 
+```javascript
+import {default as sj, description, dependencies} from 'schema-in-js';
+export const userSchema = {
+    [description]: 'User',
+    username: sj.str.length(10, 4),
+    password: sj.str.pattern('^(?:\\d+|[a-zA-Z]+|[!@#$%^&*]+)$'),
+    age: sj.int.range(100, 16).mayBe(),
+    gender: sj.enum('male', 'female').mayBe(),
+    province: sj.str.length(10).mayBe(),
+    city: sj.str.length(10).mayBe(),
+    [dependencies]: {city: ['province]}
+};
+```
+
+We can tranform the schema wrote by schema-in-js to rightful json schema through sj.tranformToJSONSchema.
+
+## Core apis
+### Module entry
+#### default
+#### object relevant keywords
++ id
++ title
++ description
++ dependencies
++ additionalProperties
++ patternProperties
++ maxProperties
++ minProperties
+
+#### Builtin types
++ Str
++ Obj
++ Num
++ Int
++ Arr
++ Bool
+
+#### Combining keywords
+In developing.
+
+
+## TODO
+### JSON Schema keywords to support.
++ allOf;
++ anyOf;
++ not;
+
+### Features
++ Type customization.
++ Extensional keyword.
+
+## License
 MIT
