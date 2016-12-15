@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import * as entry from '../../src/index';
-import {Types} from '../../src/types';
+import {SchemaInJS} from '../../src/schema-in-js';
 import {Str} from '../../src/types/string';
 import {Num} from '../../src/types/number';
 import {Int} from '../../src/types/integer';
@@ -20,7 +20,7 @@ import {
 
 describe('index', function () {
     it('Should have right export.', () => {
-        assert.instanceOf(entry.default, Types);
+        assert.instanceOf(entry.default, SchemaInJS);
         assert.equal(entry.Str, Str);
         assert.equal(entry.Num, Num);
         assert.equal(entry.Bool, Bool);

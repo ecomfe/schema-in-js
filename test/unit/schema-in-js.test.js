@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {Types} from '../../src/types';
+import {SchemaInJS} from '../../src/schema-in-js';
 import {Str} from '../../src/types/string';
 import {Num} from '../../src/types/number';
 import {Int} from '../../src/types/integer';
@@ -19,15 +19,15 @@ import {
 } from '../../src/const';
 
 describe('types', () => {
-    it('Types should be a function', () => {
-        assert.typeOf(Types, 'function');
+    it('SchemaInJS should be a function', () => {
+        assert.typeOf(SchemaInJS, 'function');
     });
 
     let t = null;
-    beforeEach(() => {t = new Types();});
+    beforeEach(() => {t = new SchemaInJS();});
     afterEach(() => {t = undefined;});
 
-    it('All type of schema should be accessable from Types instance', () => {
+    it('All type of schema should be accessable from SchemaInJS instance', () => {
         assert.instanceOf(t.str, Str);
         assert.instanceOf(t.int, Int);
         assert.instanceOf(t.bool, Bool);
@@ -36,7 +36,7 @@ describe('types', () => {
         assert.instanceOf(t.obj, Obj);
     });
 
-    it('Types.prototype.fromPlainObjectToObjectSchema should work well', () => {
+    it('SchemaInJS.prototype.fromPlainObjectToObjectSchema should work well', () => {
         let nameSchema = t.str.size(10);
         let ageSchema = t.int.range(100, 10);
         let schema = {
@@ -70,7 +70,7 @@ describe('types', () => {
         assert.equal(transformed[PATTERN_PROPERTIES], '(name)|(age)|(\w.*Prop$)');
     });
 
-    it('Types.prototype.transformToJSONSchema should work well with Schema param', () => {
+    it('SchemaInJS.prototype.transformToJSONSchema should work well with Schema param', () => {
         let schema = new Obj();
         let transformedSchema = t.transformToJSONSchema(schema);
         assert.deepEqual(
@@ -79,7 +79,7 @@ describe('types', () => {
         );
     });
 
-    it('Types.prototype.transformToJSONSchema should work well with plain object param', () => {
+    it('SchemaInJS.prototype.transformToJSONSchema should work well with plain object param', () => {
         let schema = {
             name: t.str.maxLength(10)
         };
@@ -99,7 +99,7 @@ describe('types', () => {
         );
     });
 
-    it('Types.prototype.transformToJSONSchema should throw with empty plain object param', () => {
+    it('SchemaInJS.prototype.transformToJSONSchema should throw with empty plain object param', () => {
         assert.throw(t.transformToJSONSchema.bind(t, {}), Error);
     });
 });

@@ -26,13 +26,27 @@ npm install schema-in-js
 And include in your project:
 
 ```javascript
-import ts from 'schema-in-js';
+import sj from 'schema-in-js';
 
 let schema = {
-    name: ts.str.length(10, 5)
+    name: sj.str.length(10, 5)
 };
 
-let jsonSchema = Schema.toJSONSchema(schema);
+let jsonSchema = sj.transformToJSONSchema(schema);
+console.log(jsonSchema);
+
+// output
+{
+    type: 'object',
+    properties: {
+        name: {
+            type: 'string',
+            maxLength: 10,
+            minLength: 5
+        }
+    },
+    required: ['name']
+}
 ```
 
 ## License

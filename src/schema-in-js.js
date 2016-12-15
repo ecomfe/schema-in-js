@@ -26,14 +26,14 @@ import {
 
 /**
  * JSON schema features collection class.
- * 
- * @class Types
+ *
+ * @class SchemaInJS
  */
-export class Types {
+export class SchemaInJS {
 
     /**
      * String schema getter.
-     * 
+     *
      * @readonly
      * @type {Str}
      */
@@ -43,7 +43,7 @@ export class Types {
 
     /**
      * Number schema getter
-     * 
+     *
      * @readonly
      * @type {Num}
      */
@@ -53,7 +53,7 @@ export class Types {
 
     /**
      * Integer schema getter
-     * 
+     *
      * @readonly
      * @type {Int}
      */
@@ -63,7 +63,7 @@ export class Types {
 
     /**
      * Boolean schema getter
-     * 
+     *
      * @readonly
      * @type {Bool}
      */
@@ -73,7 +73,7 @@ export class Types {
 
     /**
      * Array schema getter
-     * 
+     *
      * @readonly
      * @type {Arr}
      */
@@ -83,7 +83,7 @@ export class Types {
 
     /**
      * Object schema getter
-     * 
+     *
      * @readonly
      * @type {Obj}
      */
@@ -93,7 +93,7 @@ export class Types {
 
     /**
      * Transform schema in js to JSON schema.
-     * 
+     *
      * @public
      * @param {Schema | Object} schemaInJS Schema in js.
      * @return {Object}
@@ -110,7 +110,7 @@ export class Types {
 
     /**
      * Transform plain object schema into Schema instance.
-     * 
+     *
      * @private
      * @param {Object} plainObject Plain object schema.
      * @return {Obj}

@@ -5,7 +5,7 @@
  * @author hiby(yanghuabei@outlook.com)
  */
 
-import {Types} from './types';
+import {SchemaInJS} from './schema-in-js';
 
 export {Str} from './types/string';
 export {Num} from './types/number';
@@ -25,4 +25,6 @@ export {
     MIN_PROPERTIES as minProperties
 } from './const';
 
-export default new Types();
+export default new SchemaInJS();
+
+export {SchemaInJS};
