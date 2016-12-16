@@ -79,7 +79,7 @@ export const userSchema = {
     gender: sj.enum('male', 'female').mayBe(),
     province: sj.str.length(10).mayBe(),
     city: sj.str.length(10).mayBe(),
-    [dependencies]: {city: ['province]}
+    [dependencies]: {city: ['province']}
 };
 ```
 
@@ -88,6 +88,12 @@ We can tranform the schema wrote by schema-in-js to rightful json schema through
 ## Core apis
 ### Module entry
 #### default
+Instance of SchemaInJS.
+
+##### SchemaInJS apis
++ tranformToJSONSchema: Function
+
+
 #### object relevant keywords
 + id
 + title
@@ -112,9 +118,10 @@ In developing.
 
 ## TODO
 ### JSON Schema keywords to support.
-+ allOf;
-+ anyOf;
-+ not;
++ allOf
++ anyOf
++ oneOf
++ not
 
 ### Features
 + Type customization.
